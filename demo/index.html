@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Africa Travel & Life — Design Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Oswald:wght@400;500;600;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --crimson:#5b081e;--dgreen:#014a34;--mgreen:#00944f;
+  --lgreen:#6dd16d;--cyan:#16d0ff;--gold:#c48618;--cream:#fefaa4;
+}
+body{font-family:'Lato',sans-serif;background:#0e0007;color:#fff;min-height:100vh}
+
+/* LOGO */
+.logo{display:inline-flex;flex-direction:column;align-items:center;text-decoration:none;line-height:1}
+.logo-africa{font-family:'Oswald',sans-serif;font-weight:700;font-size:56px;letter-spacing:-1px;background:linear-gradient(135deg,var(--cream),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.logo-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;letter-spacing:6px;color:var(--gold);margin-top:-4px}
+
+/* HEADER */
+header{background:var(--crimson);padding:70px 40px 50px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(196,134,24,.15) 0%,transparent 70%)}
+.header-inner{position:relative;z-index:1}
+.header-tagline{font-family:'Lato',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:rgba(254,250,164,.6);margin-top:24px;margin-bottom:6px}
+.header-desc{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:rgba(254,250,164,.85);margin:12px auto 0;max-width:600px;line-height:1.7}
+.gold-rule{width:100px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:24px auto}
+
+/* COLOR BAR */
+.color-bar{display:flex;height:5px}
+.color-bar span{flex:1}
+
+/* INTRO */
+.intro{text-align:center;padding:56px 20px 36px}
+.intro h2{font-family:'Oswald',sans-serif;font-size:32px;font-weight:600;letter-spacing:3px;text-transform:uppercase;background:linear-gradient(135deg,var(--cream),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
+.intro p{font-size:15px;color:rgba(255,255,255,.55);max-width:580px;margin:0 auto;line-height:1.7}
+.phase-header{font-family:'Oswald',sans-serif;font-size:20px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);text-align:center;margin:60px 0 30px;position:relative}
+.phase-header::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;max-width:600px;height:1px;background:linear-gradient(to right,transparent,rgba(196,134,24,.3),transparent);z-index:-1}
+.phase-header span{background:#0e0007;padding:0 20px}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2px;max-width:1280px;margin:0 auto;padding:0 2px 60px}
+.card{background:#1a0008;text-decoration:none;color:inherit;display:block;transition:transform .3s ease;position:relative;overflow:hidden;border:1px solid rgba(196,134,24,.1)}
+.card:hover{transform:translateY(-4px);border-color:rgba(196,134,24,.4);z-index:2;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+
+/* PREVIEW */
+.preview{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.preview-logo{display:flex;flex-direction:column;align-items:center;line-height:1;position:relative;z-index:2}
+.pl-africa{font-family:'Oswald',sans-serif;font-weight:700;font-size:30px;letter-spacing:-1px}
+.pl-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:9px;letter-spacing:5px}
+.preview-badge{position:absolute;top:14px;right:14px;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:5px 12px;font-family:'Lato',sans-serif;font-weight:700;z-index:3}
+
+/* Phase 1 Styles */
+.p1{background:var(--crimson)}
+.p1 .pl-africa{background:linear-gradient(135deg,var(--cream),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.p1 .pl-sub{color:var(--gold)}
+
+.p2{background:var(--dgreen)}
+.p2 .pl-africa{background:linear-gradient(135deg,var(--cream),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.p2 .pl-sub{color:var(--gold)}
+
+.p3{background:#fff}
+.p3 .pl-africa{color:var(--crimson);-webkit-text-fill-color:var(--crimson)}
+.p3 .pl-sub{color:var(--dgreen)}
+
+.p4{background:linear-gradient(135deg,var(--crimson) 0%,#3a0510 50%,var(--dgreen) 100%)}
+.p4 .pl-africa{background:linear-gradient(135deg,var(--cream),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.p4 .pl-sub{color:var(--gold)}
+
+.p5{background:linear-gradient(160deg,var(--dgreen),#012d20)}
+.p5 .pl-africa{background:linear-gradient(135deg,var(--cream),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.p5 .pl-sub{color:var(--gold)}
+
+.p6{background:#f5eedf}
+.p6 .pl-africa{color:var(--crimson);-webkit-text-fill-color:var(--crimson)}
+.p6 .pl-sub{color:var(--dgreen)}
+
+/* Phase 2 Styles */
+.p7{background:#fff}
+.p7 .pl-africa{color:#111;-webkit-text-fill-color:#111;letter-spacing:4px;font-weight:400;font-size:24px}
+.p7 .pl-sub{color:#999;letter-spacing:8px}
+
+.p8{background:linear-gradient(to right,var(--crimson) 50%,#222 50%)}
+.p8 .pl-africa{background:linear-gradient(135deg,var(--cream),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.p8 .pl-sub{color:var(--gold)}
+
+.p9{background:#0a0e0b;border-bottom:4px solid var(--mgreen)}
+.p9 .pl-africa{color:var(--mgreen);-webkit-text-fill-color:var(--mgreen)}
+.p9 .pl-sub{color:#fff}
+
+.p10{background:var(--crimson)}
+.p10 .pl-africa{font-size:60px;line-height:.8;background:linear-gradient(135deg,var(--cream),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.p10 .pl-sub{display:none}
+
+.p11{background:#011a12}
+.p11 .pl-africa{color:var(--cyan);-webkit-text-fill-color:var(--cyan);text-shadow:0 0 10px rgba(22,208,255,.5)}
+.p11 .pl-sub{color:var(--lgreen)}
+
+.p12{background:radial-gradient(circle at center,var(--dgreen),var(--crimson));position:relative}
+.p12::after{content:'';position:absolute;inset:20px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
+.p12 .preview-logo{z-index:5}
+.p12 .pl-africa{color:#fff;-webkit-text-fill-color:#fff}
+.p12 .pl-sub{color:#fff}
+
+/* CARD BODY */
+.card-body{padding:28px}
+.style-no{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px;font-family:'Lato',sans-serif}
+.style-name{font-family:'Oswald',sans-serif;font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;color:#fff}
+.s1-name{color:var(--cream)}
+.s2-name{color:var(--lgreen)}
+.s3-name{color:var(--gold)}
+.s4-name{background:linear-gradient(135deg,var(--cream),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.s5-name{color:var(--cyan)}
+.s6-name{color:var(--gold)}
+.s7-name{color:#fff}
+.s8-name{color:var(--crimson)}
+.s9-name{color:var(--mgreen)}
+.s10-name{color:var(--gold)}
+.s11-name{color:var(--cyan)}
+.s12-name{color:rgba(255,255,255,.8)}
+
+.style-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:20px}
+.swatches{display:flex;gap:6px;margin-bottom:22px}
+.sw{width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(255,255,255,.15);flex-shrink:0}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:11px 24px;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;font-weight:700;text-decoration:none;transition:.25s;border:1px solid var(--gold);color:var(--gold)}
+.cta:hover{background:var(--gold);color:#000}
+.cta-arrow{transition:transform .25s}
+.card:hover .cta-arrow{transform:translateX(5px)}
+
+/* FOOTER */
+.site-footer{background:var(--crimson);border-top:1px solid rgba(196,134,24,.2);padding:30px;text-align:center}
+.site-footer p{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(254,250,164,.45)}
+.site-footer strong{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo" style="display:inline-flex">
+      <span class="logo-africa">AFRICA</span>
+      <span class="logo-sub">Travel and Life</span>
+    </a>
+    <div class="gold-rule"></div>
+    <p class="header-tagline">Client Design Presentation · Selected Concepts · 2025</p>
+    <p class="header-desc">The three selected visual directions for Africa's premier travel and lifestyle magazine — all built entirely on the official brand guidelines.</p>
+  </div>
+</header>
+<div class="color-bar">
+  <span style="background:var(--cyan)"></span>
+  <span style="background:var(--lgreen)"></span>
+  <span style="background:var(--mgreen)"></span>
+  <span style="background:var(--dgreen)"></span>
+  <span style="background:var(--crimson)"></span>
+</div>
+
+<div class="intro">
+  <h2>Selected Designs</h2>
+  <p>These three styles have been selected as the main directions to proceed with. The layout, hierarchy and atmosphere change — the core identity stays completely true.</p>
+</div>
+
+
+
+<div class="grid">
+<a href="style1.html" class="card"><div class="preview p1"><div class="preview-logo"><span class="pl-africa">AFRICA</span><span class="pl-sub">Travel and Life</span></div><span class="preview-badge" style="background:var(--gold);color:#000">01</span></div><div class="card-body"><p class="style-no">Style 01</p><h2 class="style-name s1-name">Crimson Luxury</h2><p class="style-desc">The brand's native identity. Deep crimson #5b081e dominates. Gold gradient typography. Cinematic photography.</p><div class="swatches"><div class="sw" style="background:#5b081e"></div><div class="sw" style="background:#c48618"></div><div class="sw" style="background:#fefaa4"></div><div class="sw" style="background:#014a34"></div><div class="sw" style="background:#16d0ff"></div></div><span class="cta">View Style <span class="cta-arrow">→</span></span></div></a>
+
+
+
+<a href="#" class="card" style="opacity: 0.6; pointer-events: none;"><div class="preview p6"><div class="preview-logo" style="gap:8px"><span class="pl-africa" style="color:var(--crimson);-webkit-text-fill-color:var(--crimson);font-size:28px">AFRICA</span><span class="pl-sub" style="color:var(--dgreen)">Travel and Life</span><div style="width:50px;height:1px;background:var(--gold);margin:6px auto"></div><span style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-family:'Lato',sans-serif">Current Issue</span></div><span class="preview-badge" style="background:var(--dgreen);color:var(--gold)">02</span></div><div class="card-body"><p class="style-no">Style 02</p><h2 class="style-name s6-name">Cover Art</h2><p class="style-desc">Warm cream canvas centered on a 3D physical magazine cover. Typographically-led. Timeless, collectible bookshop aesthetic.</p><div class="swatches"><div class="sw" style="background:#f5eedf;border-color:rgba(255,255,255,.2)"></div><div class="sw" style="background:#5b081e"></div><div class="sw" style="background:#014a34"></div><div class="sw" style="background:#c48618"></div><div class="sw" style="background:#fefaa4;border-color:rgba(255,255,255,.2)"></div></div><span class="cta" style="color:rgba(255,255,255,0.4)">Coming Soon</span></div></a>
+
+  <a href="#" class="card" style="opacity: 0.6; pointer-events: none;">
+    <div class="preview p13" style="background:#070a08;border-bottom:4px solid #c48618">
+      <div class="preview-logo">
+        <span class="pl-africa" style="color:#fff;-webkit-text-fill-color:#fff">AFRICA</span>
+        <span class="pl-sub" style="color:#c48618">3D Interactive</span>
+      </div>
+      <span class="preview-badge" style="background:#c48618;color:#000">03</span>
+    </div>
+    <div class="card-body">
+      <p class="style-no">Style 03</p>
+      <h2 class="style-name s13-name" style="color:#fff">3D Interactive</h2>
+      <p class="style-desc">A highly animated design featuring GSAP scroll triggers and a fully functional 3D flipping magazine built with CSS transforms.</p>
+      <div class="swatches">
+        <div class="sw" style="background:#070a08"></div>
+        <div class="sw" style="background:#5b081e"></div>
+        <div class="sw" style="background:#014a34"></div>
+        <div class="sw" style="background:#c48618"></div>
+        <div class="sw" style="background:#fff"></div>
+      </div>
+      <span class="cta" style="color:rgba(255,255,255,0.4)">Coming Soon</span>
+    </div>
+  </a>
+
+</div>
+
+<footer class="site-footer">
+  <p><strong>Africa Travel & Life</strong> &nbsp;·&nbsp; Design Concepts &nbsp;·&nbsp; Confidential Client Presentation &nbsp;·&nbsp; 2025</p>
+</footer>
+</body>
+</html>

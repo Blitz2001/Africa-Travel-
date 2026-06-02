@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Africa Travel & Life — Style 12: Glassmorphism</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Oswald:wght@300;400;500;600;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cr:#5b081e;--dg:#014a34;--mg:#00944f;--lg:#6dd16d;--cy:#16d0ff;--go:#c48618;--cm:#fefaa4}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:#000;color:#fff;overflow-x:hidden}
+.back{position:fixed;top:20px;left:20px;z-index:999;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:8px 16px;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#fff;text-decoration:none;font-weight:700;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:.3s}
+.back:hover{background:var(--cr);border-color:var(--cr)}
+
+/* NAV (Glass) */
+nav{position:fixed;top:40px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:14px 40px;border-radius:40px;display:flex;align-items:center;gap:40px;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.logo-block{display:flex;flex-direction:column;line-height:1;text-decoration:none}
+.logo-africa{font-family:'Oswald',sans-serif;font-size:20px;letter-spacing:1px;color:#fff;font-weight:600}
+.logo-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:8px;color:var(--cm);letter-spacing:4px;margin-top:1px}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.8);text-decoration:none;transition:.3s}
+.nav-links a:hover{color:var(--cm)}
+
+/* HERO (Full Bleed Image) */
+.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-content{position:relative;z-index:2;background:rgba(0,74,52,.4);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:60px 80px;border-radius:24px;text-align:center;max-width:800px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.h-tag{display:inline-block;border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 14px;font-size:9px;letter-spacing:4px;text-transform:uppercase;margin-bottom:24px;border-radius:20px}
+.hero h1{font-family:'Oswald',sans-serif;font-size:clamp(40px,6vw,80px);line-height:1.1;text-transform:uppercase;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(135deg,var(--cm),var(--go));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.8);margin-bottom:40px;font-family:'Playfair Display',serif;font-style:italic}
+.btn-glass{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#fff;padding:14px 34px;font-size:11px;letter-spacing:4px;text-transform:uppercase;text-decoration:none;font-weight:700;display:inline-block;transition:.3s;border-radius:30px}
+.btn-glass:hover{background:#fff;color:#000}
+
+/* SECTION BASE (All Full Bleed) */
+.section-full{position:relative;min-height:100vh;display:flex;align-items:center;padding:100px 60px}
+.sec-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+
+/* EDITORIAL GRID (Over Image) */
+.ed-container{position:relative;z-index:2;width:100%}
+.ed-head{text-align:center;margin-bottom:60px}
+.ed-head h2{font-family:'Oswald',sans-serif;font-size:40px;text-transform:uppercase;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.ed-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px}
+.ed-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:40px;border-radius:20px;text-decoration:none;color:inherit;transition:transform .3s,background .3s}
+.ed-card:hover{transform:translateY(-10px);background:rgba(255,255,255,.1)}
+.ed-tag{display:inline-block;background:rgba(255,255,255,.2);color:#fff;padding:4px 12px;font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:20px;border-radius:12px}
+.ed-card h3{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:16px;line-height:1.3}
+.ed-card p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.7}
+
+/* SPOTLIGHT (Over Image) */
+.spot-panel{position:relative;z-index:2;background:rgba(91,8,30,.6);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:80px;border-radius:24px;max-width:600px;margin-left:auto}
+.spot-panel h2{font-family:'Oswald',sans-serif;font-size:50px;text-transform:uppercase;line-height:1;margin-bottom:20px}
+.spot-panel p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.8);margin-bottom:40px}
+
+/* FOOTER (Glass) */
+footer{background:rgba(0,0,0,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:60px;text-align:center;border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:10}
+.ft-logo{font-family:'Oswald',sans-serif;font-size:40px;letter-spacing:2px;color:#fff;line-height:1;margin-bottom:30px}
+.ft-links{display:flex;justify-content:center;gap:40px;margin-bottom:30px}
+.ft-links a{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#888;text-decoration:none;transition:.3s}
+.ft-links a:hover{color:#fff}
+.ft-copy{font-size:10px;color:#444;letter-spacing:2px}
+
+@media(max-width:960px){
+  nav{top:20px;padding:12px 24px}.nav-links{display:none}
+  .hero-content{padding:40px 24px;margin:0 20px}
+  .section-full{padding:80px 20px}
+  .ed-grid{grid-template-columns:1fr}
+  .spot-panel{padding:40px 24px}
+}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← All Styles</a>
+
+<nav>
+  <a href="#" class="logo-block">
+    <span class="logo-africa">AFRICA</span>
+    <span class="logo-sub">Travel and Life</span>
+  </a>
+  <ul class="nav-links">
+      <li><a href="#" style="text-decoration:underline;text-underline-offset:4px;">Subscribe</a></li>
+      <li><a href="#">The Book</a></li>
+      <li><a href="#">Merch</a></li>
+      <li><a href="#">Cover Art</a></li>
+      <li><a href="#">About</a></li>
+</ul>
+</nav>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1600&q=80" alt="Africa" class="hero-bg">
+  <div class="hero-content">
+    <span class="h-tag">Issue 04</span>
+    <h1>The Endless<br><span>Continent</span></h1>
+    <p>Africa's first internationally distributed travel and tourism magazine. Uncompromising on every page.</p>
+    <a href="#editorial" class="btn-glass">Enter The Collection</a>
+  </div>
+</section>
+
+<section class="section-full" id="editorial">
+  <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1600&q=80" alt="Lodge" class="sec-bg" style="filter:brightness(.6)">
+  <div class="ed-container">
+    <div class="ed-head">
+      <h2>Issue Highlights</h2>
+    </div>
+    <div class="ed-grid">
+      <a href="#" class="ed-card">
+        <span class="ed-tag">Adventure</span>
+        <h3>Heart of the Serengeti</h3>
+        <p>Three weeks following the great migration across the plains. One of the planet's last great spectacles.</p>
+      </a>
+      <a href="#" class="ed-card">
+        <span class="ed-tag">Fashion</span>
+        <h3>Style Without Borders</h3>
+        <p>African designers reshaping the global conversation in high fashion.</p>
+      </a>
+      <a href="#" class="ed-card">
+        <span class="ed-tag">Culinary</span>
+        <h3>A Table in Marrakech</h3>
+        <p>Where ancient spice routes meet modern fine dining.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section-full">
+  <img src="https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=1600&q=80" alt="Freetown" class="sec-bg">
+  <div class="spot-panel">
+    <span class="h-tag" style="background:rgba(255,255,255,.2);border:none">Destination Spotlight</span>
+    <h2>Discover<br>Freetown</h2>
+    <p>Where the Atlantic meets lush green hills, and colonial heritage breathes alongside a vibrant, forward-looking energy. Sierra Leone's capital is Africa's next great destination story.</p>
+    <a href="#" class="btn-glass">Read The Guide</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-logo">AFRICA</div>
+  <div class="ft-links">
+    <a href="#">Subscribe</a>
+    <a href="#">Media Kit</a>
+    <a href="#">Instagram</a>
+  </div>
+  <p class="ft-copy">© 2025 Africa Travel & Life. All Rights Reserved.</p>
+</footer>
+</body>
+</html>

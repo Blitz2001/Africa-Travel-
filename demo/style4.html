@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Africa Travel & Life — Style 4: Dual Tone</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Oswald:wght@400;500;600;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cr:#5b081e;--dg:#014a34;--mg:#00944f;--lg:#6dd16d;--cy:#16d0ff;--go:#c48618;--cm:#fefaa4}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:#0a0005;color:#fff;overflow-x:hidden}
+.back{position:fixed;top:16px;left:16px;z-index:999;background:rgba(10,0,5,.9);border:1px solid rgba(196,134,24,.4);padding:8px 18px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--go);text-decoration:none;backdrop-filter:blur(8px);transition:.2s}
+.back:hover{background:var(--dg);color:var(--cm)}
+.logo-africa{font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:-1px;background:linear-gradient(135deg,var(--cm) 0%,var(--go) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-family:'Playfair Display',serif;font-style:italic;color:var(--go);letter-spacing:5px}
+
+/* NAV — diagonal split */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr 1fr;transition:.4s}
+nav.scrolled{grid-template-columns:1fr 1fr}
+.nav-left{background:var(--cr);padding:18px 30px 18px 60px;display:flex;align-items:center;clip-path:polygon(0 0,calc(100% - 30px) 0,100% 100%,0 100%)}
+.nav-right{background:var(--dg);padding:18px 60px 18px 50px;display:flex;align-items:center;justify-content:flex-end;gap:28px;clip-path:polygon(30px 0,100% 0,100% 100%,0 100%)}
+.nav-brand{display:flex;flex-direction:column;line-height:1;position:absolute;left:50%;transform:translateX(-50%);z-index:10;text-align:center;pointer-events:none}
+.nav-brand .logo-africa{font-size:20px}
+.nav-brand .logo-sub{font-size:9px;margin-top:2px}
+.nav-links-l{display:flex;gap:24px;list-style:none}
+.nav-links-l a{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(254,250,164,.6);text-decoration:none;transition:.2s;font-family:'Lato',sans-serif}
+.nav-links-l a:hover{color:var(--cm)}
+.nav-cta{background:linear-gradient(135deg,var(--cm),var(--go));color:#000;padding:9px 22px;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;font-weight:900;text-decoration:none;transition:.2s}
+.nav-cta:hover{opacity:.85}
+
+/* HERO */
+.hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:flex-end}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-diagonal-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(91,8,30,.82) 0%,rgba(91,8,30,.5) 35%,rgba(1,74,52,.5) 65%,rgba(1,74,52,.82) 100%)}
+.hero-bottom-fade{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,#0a0005,transparent)}
+.hero-content{position:relative;z-index:2;width:100%;padding:0 80px 80px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.hero-main{flex:1}
+.hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.hero-eyebrow::before{content:'';width:50px;height:1px;background:linear-gradient(to right,var(--go),transparent)}
+.hero-eyebrow span{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--go);font-family:'Lato',sans-serif;font-weight:700}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(56px,8vw,110px);text-transform:uppercase;line-height:.9;letter-spacing:-2px;margin-bottom:30px}
+.h1-cr{color:#fff}
+.h1-go{background:linear-gradient(135deg,var(--cm),var(--go));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h1-dg{color:rgba(109,209,109,.9)}
+.hero-tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:rgba(254,250,164,.75);line-height:1.7;max-width:500px;margin-bottom:36px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-gold{background:linear-gradient(135deg,var(--cm),var(--go));color:#000;padding:15px 32px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;font-weight:900;text-decoration:none;display:inline-block;transition:.25s}
+.btn-gold:hover{opacity:.85}
+.btn-ghost{background:transparent;border:1px solid rgba(254,250,164,.4);color:rgba(254,250,164,.8);padding:14px 32px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;font-weight:700;text-decoration:none;display:inline-block;transition:.25s}
+.btn-ghost:hover{border-color:var(--go);color:var(--go)}
+.hero-side{text-align:right;flex-shrink:0}
+.hero-stats{display:flex;flex-direction:column;gap:16px}
+.stat-item{border-right:2px solid rgba(196,134,24,.4);padding-right:20px}
+.stat-num{font-family:'Oswald',sans-serif;font-size:38px;font-weight:700;background:linear-gradient(135deg,var(--cm),var(--go));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.stat-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(254,250,164,.4);font-family:'Lato',sans-serif}
+
+/* MISSION — two stacked panels */
+.mission-panel-cr{background:var(--cr);padding:70px 80px;position:relative;overflow:hidden}
+.mission-panel-cr::before{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(196,134,24,.1),transparent 70%)}
+.mp-label{font-size:10px;letter-spacing:5px;text-transform:uppercase;font-family:'Lato',sans-serif;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.mp-label::before{content:'';width:30px;height:1px}
+.cr-label{color:rgba(254,250,164,.5)}.cr-label::before{background:rgba(254,250,164,.3)}
+.dg-label{color:rgba(109,209,109,.6)}.dg-label::before{background:rgba(109,209,109,.3)}
+.mission-panel-cr h2{font-family:'Oswald',sans-serif;font-size:clamp(38px,6vw,72px);font-weight:700;text-transform:uppercase;line-height:.95;letter-spacing:-1px}
+.mission-panel-cr h2 .w{color:#fff}.mission-panel-cr h2 .g{background:linear-gradient(135deg,var(--cm),var(--go));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gold-div{width:100%;height:3px;background:linear-gradient(to right,var(--go),rgba(196,134,24,.2),transparent);margin:30px 0}
+.mission-panel-dg{background:var(--dg);padding:70px 80px;position:relative;overflow:hidden}
+.mission-panel-dg::before{content:'';position:absolute;left:-60px;bottom:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(196,134,24,.08),transparent 70%)}
+.mission-panel-dg p{font-size:17px;line-height:1.9;color:rgba(254,250,164,.75);margin-bottom:22px;max-width:800px;position:relative}
+.mission-panel-dg p:first-of-type{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:rgba(254,250,164,.85)}
+.pill-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;position:relative}
+.pill{padding:10px 18px;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;font-weight:700;border:1px solid}
+.pc{border-color:var(--cy);color:var(--cy)}
+.pg{border-color:var(--lg);color:var(--lg)}
+.pm{border-color:var(--mg);color:var(--mg)}
+.po{border-color:var(--go);color:var(--go)}
+
+/* EDITORIAL — 2-row dark grid */
+.editorial{background:#0e0008;padding:80px}
+.sec-hdr{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.sec-title{font-family:'Oswald',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;text-transform:uppercase;color:#fff}
+.sec-title em{font-style:normal;background:linear-gradient(135deg,var(--cm),var(--go));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-date{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,134,24,.45);font-family:'Lato',sans-serif}
+.hr-gold{border:none;border-top:1px solid rgba(196,134,24,.2);margin:12px 0 36px}
+.grid-row1{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:3px;margin-bottom:3px}
+.grid-row2{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.gcard{position:relative;overflow:hidden;cursor:pointer;text-decoration:none;display:block}
+.gcard img{width:100%;display:block;object-fit:cover;transition:transform .6s ease}
+.grid-row1 .gcard img{height:320px}.grid-row1 .gcard:first-child img{height:320px}
+.grid-row2 .gcard img{height:200px}
+.gcard:hover img{transform:scale(1.06)}
+.gcard-ovl{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,0,5,.95) 0%,rgba(10,0,5,.4) 55%,transparent 100%);transition:.3s}
+.gcard:hover .gcard-ovl{background:linear-gradient(to top,rgba(10,0,5,.98) 0%,rgba(10,0,5,.6) 65%,rgba(10,0,5,.1) 100%)}
+.gcard-accent{position:absolute;top:0;left:0;right:0;height:3px}
+.gcard-body{position:absolute;bottom:0;left:0;right:0;padding:18px}
+.gcat{display:inline-block;padding:4px 10px;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;font-family:'Lato',sans-serif;font-weight:700;margin-bottom:8px}
+.gc-cy{background:var(--cy);color:#001}.gc-lg{background:var(--lg);color:#001}.gc-mg{background:var(--mg);color:#fff}.gc-cr{background:var(--cr);color:var(--cm)}.gc-go{background:var(--go);color:#000}
+.gcard h3{font-family:'Playfair Display',serif;font-size:18px;color:#fff;line-height:1.3;margin-bottom:6px}
+.grid-row1 .gcard:first-child h3{font-size:24px}
+.gread{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--go);opacity:0;transform:translateY(5px);transition:.3s;font-family:'Lato',sans-serif;font-weight:700}
+.gcard:hover .gread{opacity:1;transform:translateY(0)}
+
+/* SPOTLIGHT — full-bleed with overlay panel */
+.spotlight{position:relative;min-height:600px;overflow:hidden;display:flex;align-items:flex-end}
+.spot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.spot-img-ovl{position:absolute;inset:0;background:linear-gradient(to top,rgba(91,8,30,.97) 0%,rgba(91,8,30,.7) 35%,rgba(0,0,0,.2) 100%)}
+.spot-content{position:relative;z-index:2;width:100%;padding:60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end}
+.spot-left .spot-lbl{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--go);font-family:'Lato',sans-serif;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.spot-left .spot-lbl::before{content:'';width:30px;height:1px;background:var(--go)}
+.spot-left h2{font-family:'Oswald',sans-serif;font-size:clamp(48px,8vw,90px);font-weight:700;text-transform:uppercase;line-height:.9;letter-spacing:-2px;color:#fff}
+.spot-left h2 span{background:linear-gradient(135deg,var(--cm),var(--go));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.spot-right p{font-size:15px;line-height:1.85;color:rgba(254,250,164,.7);margin-bottom:26px}
+.sponsors{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.spon-t{border:1px solid rgba(196,134,24,.3);padding:7px 14px;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(254,250,164,.5);font-family:'Lato',sans-serif}
+.vid-l{display:flex;align-items:center;gap:14px;text-decoration:none;color:rgba(254,250,164,.7);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;font-family:'Lato',sans-serif;transition:.2s}
+.playb{width:44px;height:44px;border:1.5px solid var(--go);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--go);font-size:13px;flex-shrink:0;transition:.2s}
+.vid-l:hover .playb{background:var(--go);color:#000}
+.spot-cta{background:linear-gradient(135deg,var(--cm),var(--go));color:#000;padding:14px 30px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;font-weight:900;text-decoration:none;display:inline-block;transition:.25s}
+.spot-cta:hover{opacity:.85}
+
+/* SUBSCRIBE */
+.subscribe{background:var(--dg);padding:90px 80px;text-align:center;position:relative;overflow:hidden}
+.subscribe::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(to right,var(--cr),var(--go),var(--cm),var(--go),var(--cr))}
+.subscribe::after{content:'SUBSCRIBE';position:absolute;font-family:'Oswald',sans-serif;font-size:200px;font-weight:700;color:rgba(255,255,255,.025);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:-5px}
+.sub-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:rgba(109,209,109,.5);font-family:'Lato',sans-serif;margin-bottom:14px;position:relative;z-index:1}
+.subscribe h2{font-family:'Oswald',sans-serif;font-size:clamp(32px,6vw,70px);font-weight:700;text-transform:uppercase;line-height:.95;position:relative;z-index:1;margin-bottom:14px}
+.subscribe h2 .w{color:#fff}
+.subscribe h2 .g{background:linear-gradient(135deg,var(--cm),var(--go));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.subscribe p{font-size:16px;color:rgba(254,250,164,.6);max-width:520px;margin:0 auto 40px;line-height:1.7;position:relative;z-index:1}
+.sub-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.sbtn-gold{background:linear-gradient(135deg,var(--cm),var(--go));color:#000;padding:16px 40px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;font-weight:900;text-decoration:none;border:none;cursor:pointer;transition:.25s;display:inline-block}
+.sbtn-gold:hover{opacity:.85}
+.sbtn-cr{background:var(--cr);color:var(--cm);padding:16px 40px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;font-weight:700;text-decoration:none;display:inline-block;border:none;cursor:pointer;transition:.25s}
+.sbtn-cr:hover{background:rgba(91,8,30,.8)}
+
+/* FOOTER */
+footer{background:#060002;padding:60px 80px 28px;border-top:1px solid rgba(196,134,24,.1)}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.ft-brand .logo-africa{font-size:22px}.ft-brand .logo-sub{font-size:10px;display:block;margin-top:2px}
+.ft-brand p{font-size:13px;color:rgba(254,250,164,.3);line-height:1.7;margin-top:14px;max-width:260px}
+.ft-col h5{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--go);font-family:'Lato',sans-serif;font-weight:700;margin-bottom:18px}
+.ft-col ul{list-style:none}
+.ft-col ul li{margin-bottom:10px}
+.ft-col ul li a{font-size:13px;color:rgba(254,250,164,.3);text-decoration:none;font-family:'Lato',sans-serif;transition:.2s}
+.ft-col ul li a:hover{color:var(--cy)}
+.ft-bot{border-top:1px solid rgba(196,134,24,.08);padding-top:22px;display:flex;justify-content:space-between;font-size:11px;color:rgba(254,250,164,.18);letter-spacing:1px;flex-wrap:wrap;gap:8px}
+
+@media(max-width:960px){
+  .nav-brand{position:static;transform:none;text-align:left}
+  nav{grid-template-columns:1fr}.nav-left{clip-path:none;padding:14px 20px}.nav-right{clip-path:none;padding:14px 20px}
+  .hero-content{padding:0 24px 50px;flex-direction:column;align-items:flex-start}.hero-side{display:none}
+  .mission-panel-cr,.mission-panel-dg{padding:60px 24px}
+  .editorial{padding:50px 16px}.grid-row1{grid-template-columns:1fr}.grid-row2{grid-template-columns:1fr 1fr}
+  .spot-content{grid-template-columns:1fr;padding:40px 24px}
+  .subscribe{padding:60px 24px}
+  .ft{grid-template-columns:1fr 1fr;gap:28px}
+  footer{padding:40px 24px 20px}
+}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← All Styles</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-left">
+    <ul class="nav-links-l">
+      <li><a href="#" style="text-decoration:underline;text-underline-offset:4px;">Subscribe</a></li>
+      <li><a href="#">The Book</a></li>
+      <li><a href="#">Merch</a></li>
+</ul>
+  </div>
+  <div class="nav-brand" style="position:absolute;left:50%;transform:translateX(-50%);text-align:center">
+    <span class="logo-africa" style="font-size:20px">AFRICA</span>
+    <span class="logo-sub" style="font-size:9px;display:block;margin-top:2px">Travel and Life</span>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links-l">
+      <li><a href="#">Cover Art</a></li>
+      <li><a href="#">About</a></li>
+</ul>
+    <a href="#subscribe" class="nav-cta">Subscribe</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="margin-top:57px">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1600&q=80" alt="Africa">
+  <div class="hero-diagonal-overlay"></div>
+  <div class="hero-bottom-fade"></div>
+  <div class="hero-content">
+    <div class="hero-main">
+      <div class="hero-eyebrow"><span>Vol. IV · Africa's Premier Travel Magazine</span></div>
+      <h1>
+        <span class="h1-cr">ONE</span><br>
+        <span class="h1-go">CONTI-</span><br>
+        <span class="h1-cr">NENT.</span><br>
+        <span class="h1-dg">ENDLESS</span><br>
+        <span class="h1-go">JOURNEYS.</span>
+      </h1>
+      <p class="hero-tagline">Africa's first internationally distributed travel and tourism magazine — bringing the continent to the world with the intimacy it deserves.</p>
+      <div class="hero-btns">
+        <a href="#subscribe" class="btn-gold">Subscribe Now</a>
+        <a href="#editorial" class="btn-ghost">Explore Issue 04</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">04</div><div class="stat-lbl">Current Issue</div></div>
+        <div class="stat-item"><div class="stat-num">4+</div><div class="stat-lbl">Continents</div></div>
+        <div class="stat-item"><div class="stat-num">32K</div><div class="stat-lbl">Print Readers</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<div class="mission-panel-cr">
+  <p class="mp-label cr-label">Our Identity</p>
+  <h2><span class="w">AFRICA'S</span><br><span class="g">FIRST.</span><br><span class="w">INTERNATIONALLY</span><br><span class="g">DISTRIBUTED.</span></h2>
+  <div class="gold-div"></div>
+</div>
+<div class="mission-panel-dg">
+  <p class="mp-label dg-label">Our Mission</p>
+  <p>"We go where the light is extraordinary, where culture runs deep, and where luxury means something real."</p>
+  <p>Africa Travel & Life connects a global readership to the people, places, flavours and fashion of the world's most extraordinary continent. Published quarterly. Distributed across four continents. Uncompromising on every page.</p>
+  <div class="pill-row">
+    <span class="pill pc">High Fashion</span>
+    <span class="pill pg">Luxury Escapes</span>
+    <span class="pill pm">Adventure Africa</span>
+    <span class="pill po">Food & Drink</span>
+  </div>
+</div>
+
+<!-- EDITORIAL -->
+<section class="editorial" id="editorial">
+  <div class="sec-hdr">
+    <h2 class="sec-title">EXPLORE <em>AFRICA</em></h2>
+    <span class="sec-date">Issue 04 · Summer 2025</span>
+  </div>
+  <hr class="hr-gold">
+  <div class="grid-row1">
+    <a href="#" class="gcard">
+      <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=900&q=80" alt="">
+      <div class="gcard-ovl"></div>
+      <div class="gcard-accent" style="background:var(--cy)"></div>
+      <div class="gcard-body"><span class="gcat gc-cy">Adventure Africa</span><h3>Into the Heart of the Serengeti</h3><p class="gread">Read More →</p></div>
+    </a>
+    <a href="#" class="gcard">
+      <img src="https://images.unsplash.com/photo-1509059852496-f3822ae057bf?w=600&q=80" alt="">
+      <div class="gcard-ovl"></div>
+      <div class="gcard-accent" style="background:var(--lg)"></div>
+      <div class="gcard-body"><span class="gcat gc-lg">High Fashion</span><h3>Style Without Borders</h3><p class="gread">Read More →</p></div>
+    </a>
+    <a href="#" class="gcard">
+      <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=600&q=80" alt="">
+      <div class="gcard-ovl"></div>
+      <div class="gcard-accent" style="background:var(--go)"></div>
+      <div class="gcard-body"><span class="gcat gc-go">Luxury Escapes</span><h3>Beyond the Horizon</h3><p class="gread">Read More →</p></div>
+    </a>
+  </div>
+  <div class="grid-row2">
+    <a href="#" class="gcard">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=70" alt="">
+      <div class="gcard-ovl"></div>
+      <div class="gcard-accent" style="background:var(--cr)"></div>
+      <div class="gcard-body"><span class="gcat gc-cr">Food & Drink</span><h3>A Table in Marrakech</h3><p class="gread">Read More →</p></div>
+    </a>
+    <a href="#" class="gcard">
+      <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=500&q=70" alt="">
+      <div class="gcard-ovl"></div>
+      <div class="gcard-accent" style="background:var(--mg)"></div>
+      <div class="gcard-body"><span class="gcat gc-mg">Adventure</span><h3>Dawn Over Maasai Mara</h3><p class="gread">Read More →</p></div>
+    </a>
+    <a href="#" class="gcard">
+      <img src="https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=500&q=70" alt="">
+      <div class="gcard-ovl"></div>
+      <div class="gcard-accent" style="background:var(--dg)"></div>
+      <div class="gcard-body"><span class="gcat gc-cy">Destination</span><h3>Discover Freetown</h3><p class="gread">Read More →</p></div>
+    </a>
+  </div>
+</section>
+
+<!-- SPOTLIGHT -->
+<section class="spotlight">
+  <img class="spot-img" src="https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=1400&q=80" alt="Freetown">
+  <div class="spot-img-ovl"></div>
+  <div class="spot-content">
+    <div class="spot-left">
+      <p class="spot-lbl">Destination Spotlight</p>
+      <h2>DISCOVER<br><span>FREETOWN</span></h2>
+    </div>
+    <div class="spot-right">
+      <p>Where the Atlantic meets lush green hills, and colonial heritage breathes alongside a vibrant, forward-looking energy. Sierra Leone's capital is Africa's next great destination story — and we tell it in full.</p>
+      <div class="sponsors">
+        <span class="spon-t">Sierra Leone Tourism</span>
+        <span class="spon-t">Freetown City Council</span>
+        <span class="spon-t">Visit Sierra Leone</span>
+      </div>
+      <a href="#" class="vid-l"><span class="playb">▶</span>Watch: Freetown in 60 Seconds</a>
+      <a href="#" class="spot-cta">Plan Your Visit →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section class="subscribe" id="subscribe">
+  <p class="sub-eyebrow">Join the Community</p>
+  <h2><span class="g">NEVER MISS</span><br><span class="w">AN ISSUE</span></h2>
+  <p>Join thousands of readers exploring Africa's most breathtaking destinations, culture and luxury experiences — delivered worldwide.</p>
+  <div class="sub-row">
+    <a href="#" class="sbtn-gold">Subscribe Now</a>
+    <a href="#" class="sbtn-cr">View Media Kit</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div class="ft-brand">
+      <span class="logo-africa" style="font-size:22px">AFRICA</span>
+      <span class="logo-sub" style="font-size:10px;display:block;margin-top:2px">Travel and Life</span>
+      <p>Africa's first internationally distributed travel and tourism magazine. Published quarterly. Distributed worldwide.</p>
+    </div>
+    <div class="ft-col"><h5>Magazine</h5><ul><li><a href="#">Current Issue</a></li><li><a href="#">Digital Archive</a></li><li><a href="#">Subscribe</a></li><li><a href="#">Media Kit</a></li></ul></div>
+    <div class="ft-col"><h5>Explore</h5><ul><li><a href="#">Destinations</a></li><li><a href="#">High Fashion</a></li><li><a href="#">Luxury Escapes</a></li><li><a href="#">Adventure Africa</a></li><li><a href="#">Food & Drink</a></li></ul></div>
+    <div class="ft-col"><h5>Connect</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">YouTube</a></li></ul></div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2025 Africa Travel & Life. All Rights Reserved.</span>
+    <span>Privacy Policy · Terms of Use · Cookie Policy</span>
+  </div>
+</footer>
+<script>window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>40));</script>
+</body>
+</html>

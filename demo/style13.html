@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Africa Travel & Life — Style 13: 3D Interactive</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Oswald:wght@300;400;500;600;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<!-- GSAP & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cr:#5b081e;--dg:#014a34;--mg:#00944f;--lg:#6dd16d;--cy:#16d0ff;--go:#c48618;--cm:#fefaa4;--bg:#070a08}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
+
+.back{position:fixed;top:20px;left:20px;z-index:999;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:8px 16px;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#fff;text-decoration:none;backdrop-filter:blur(10px);transition:.3s}
+.back:hover{background:var(--cr);border-color:var(--cr)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;padding:30px 60px;display:flex;justify-content:space-between;align-items:center;z-index:100}
+.logo-block{display:flex;flex-direction:column;line-height:1;text-decoration:none;opacity:0;transform:translateY(-20px)}
+.logo-africa{font-family:'Oswald',sans-serif;font-size:28px;letter-spacing:1px;color:#fff;font-weight:600}
+.logo-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:10px;color:var(--go);letter-spacing:4px;margin-top:2px}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links li{opacity:0;transform:translateY(-20px)}
+.nav-links a{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#aaa;text-decoration:none;transition:.3s}
+.nav-links a:hover{color:var(--go)}
+
+/* HERO (GSAP Text Reveal) */
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
+.h-line{overflow:hidden}
+.h-text{font-family:'Oswald',sans-serif;font-size:clamp(50px,8vw,120px);text-transform:uppercase;line-height:1;transform:translateY(100%);color:#fff}
+.h-text span{color:var(--cr)}
+.h-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:rgba(254,250,164,.7);margin-top:20px;opacity:0;transform:translateY(20px)}
+.scroll-down{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:#888;opacity:0}
+
+/* 3D MAGAZINE SCENE */
+.magazine-section{position:relative;width:100%;height:100vh;background:var(--dg);display:flex;align-items:center;justify-content:center;perspective:2000px;overflow:hidden}
+.scene{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transform-style:preserve-3d}
+
+.book{position:relative;width:40vw;height:55vw;max-width:500px;max-height:650px;transform-style:preserve-3d;transform:rotateX(15deg) rotateY(0deg);box-shadow:0 30px 60px rgba(0,0,0,.5)}
+
+.page{position:absolute;top:0;left:0;width:100%;height:100%;transform-style:preserve-3d;transform-origin:left center;background:#fff;border:1px solid #ddd;box-shadow:inset 0 0 20px rgba(0,0,0,.05)}
+
+/* Front & Back of each page */
+.front, .back-page{position:absolute;top:0;left:0;width:100%;height:100%;backface-visibility:hidden;background-size:cover;background-position:center;background-repeat:no-repeat;overflow:hidden}
+.back-page{transform:rotateY(180deg);background:#fcfcfc}
+
+/* Page Contents */
+.pg-content{padding:40px;height:100%;display:flex;flex-direction:column;justify-content:space-between;color:#111}
+.pg-content.dark{background:#111;color:#fff}
+.pg-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cr);font-weight:700}
+.pg-title{font-family:'Oswald',sans-serif;font-size:40px;text-transform:uppercase;line-height:1;margin-top:auto;margin-bottom:20px}
+.pg-text{font-size:12px;line-height:1.6;font-family:'Playfair Display',serif;font-style:italic}
+
+/* Cover */
+.page1 .front{background-image:url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80')}
+.cover-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8),transparent);padding:40px;display:flex;flex-direction:column;justify-content:flex-end}
+.cover-overlay h2{font-family:'Oswald',sans-serif;font-size:60px;line-height:1;color:#fff;margin-bottom:10px}
+.cover-overlay p{font-family:'Playfair Display',serif;font-style:italic;color:var(--go);font-size:14px}
+
+/* Page 2 & 3 (Spread 1) */
+.page2 .back-page{background-image:url('https://images.unsplash.com/photo-1509059852496-f3822ae057bf?w=800&q=80')}
+.page3 .front{background:#fff}
+
+/* Page 4 & 5 (Spread 2) */
+.page4 .back-page{background:#111}
+.page5 .front{background-image:url('https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=800&q=80')}
+
+/* Z-Indexes */
+.page1{z-index:5}
+.page2{z-index:4}
+.page3{z-index:3}
+.page4{z-index:2}
+.page5{z-index:1}
+
+/* MORE SECTIONS */
+.editorial{padding:120px 60px;background:#fff;color:#111}
+.ed-head{text-align:center;margin-bottom:80px}
+.ed-head h2{font-family:'Oswald',sans-serif;font-size:40px;text-transform:uppercase}
+.ed-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.ed-card{opacity:0;transform:translateY(50px)}
+.ed-img{width:100%;aspect-ratio:3/4;object-fit:cover;margin-bottom:20px}
+
+/* FOOTER */
+footer{background:#000;padding:80px 60px;text-align:center}
+.ft-logo{font-family:'Oswald',sans-serif;font-size:40px;letter-spacing:2px;color:rgba(255,255,255,.2);line-height:1;margin-bottom:30px}
+
+@media(max-width:960px){
+  nav{padding:20px 24px}.nav-links{display:none}
+  .book{width:80vw;height:110vw}
+  .pg-content{padding:20px}
+  .pg-title{font-size:24px}
+  .editorial{padding:80px 24px}.ed-grid{grid-template-columns:1fr}
+}
+
+/* --- STRUCTURAL ADDITIONS --- */
+. structural-section { padding: 80px 40px; }
+.structural-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; align-items: center; }
+.archive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto 0; }
+.archive-item { border: 1px solid rgba(255,255,255,0.1); padding: 20px; text-align: center; background: rgba(0,0,0,0.2); transition: 0.3s; }
+.archive-item:hover { transform: translateY(-5px); border-color: var(--go); }
+.archive-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; margin-bottom: 15px; }
+
+.newsletter-box { max-width: 600px; margin: 0 auto; text-align: center; padding: 60px 40px; background: rgba(0,0,0,0.4); border: 1px solid rgba(196,134,24,0.3); }
+.newsletter-form { display: flex; gap: 10px; margin-top: 20px; justify-content: center; }
+.newsletter-form input { padding: 15px 20px; flex: 1; max-width: 300px; background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; font-family: 'Lato', sans-serif; }
+.newsletter-form button { padding: 15px 30px; background: var(--go); color: #000; border: none; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+.newsletter-form button:hover { background: #fff; }
+
+.sec-title { font-family: 'Oswald', sans-serif; font-size: 36px; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px; color: var(--go); }
+.sec-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; line-height: 1.8; margin-bottom: 20px; color: rgba(255,255,255,0.8); }
+
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← All Styles</a>
+
+<nav>
+  <a href="#" class="logo-block">
+    <span class="logo-africa">AFRICA</span>
+    <span class="logo-sub">Travel and Life</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" style="text-decoration:underline;text-underline-offset:4px;">Subscribe</a></li>
+    <li><a href="#">The Book</a></li>
+    <li><a href="#">Merch</a></li>
+    <li><a href="#">Cover Art</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="h-line"><div class="h-text">The Endless</div></div>
+  <div class="h-line"><div class="h-text"><span>Continent</span></div></div>
+  <p class="h-sub">Scroll to experience Issue 04 in 3D.</p>
+  <div class="scroll-down">Scroll Down</div>
+</section>
+
+<!-- Pinned Section for the 3D Book -->
+<section class="magazine-section">
+  <div class="scene">
+    <div class="book">
+      
+      <!-- PAGE 1 (Cover) -->
+      <div class="page page1">
+        <div class="front">
+          <div class="cover-overlay">
+            <span class="pg-tag" style="color:#fff;margin-bottom:20px">Issue 04</span>
+            <h2>AFRICA<br>UNPLUGGED</h2>
+            <p>The Summer Collection</p>
+          </div>
+        </div>
+        <div class="back-page">
+          <div class="pg-content">
+            <span class="pg-tag">Editors Note</span>
+            <h2 class="pg-title">We Go Where<br>The Light Is.</h2>
+            <p class="pg-text">Africa's first internationally distributed travel and tourism magazine. Bringing the continent to the world with the intimacy and elegance it deserves.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 2 & 3 (Spread 1) -->
+      <div class="page page2">
+        <div class="front"></div>
+        <div class="back-page">
+          <!-- Fashion Image on back of page 2 -->
+        </div>
+      </div>
+
+      <div class="page page3">
+        <div class="front">
+          <div class="pg-content">
+            <span class="pg-tag">Fashion</span>
+            <h2 class="pg-title">Style Without<br>Borders.</h2>
+            <p class="pg-text">African designers reshaping the global conversation in high fashion and luxury.</p>
+          </div>
+        </div>
+        <div class="back-page">
+           <div class="pg-content dark">
+            <span class="pg-tag" style="color:var(--go)">Destination Spotlight</span>
+            <h2 class="pg-title">Discover<br>Freetown</h2>
+            <p class="pg-text" style="color:#aaa">Where the Atlantic meets lush green hills.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 4 & 5 (Spread 2) -->
+      <div class="page page4">
+        <div class="front"></div>
+        <div class="back-page"></div>
+      </div>
+
+      <div class="page page5">
+        <div class="front">
+           <!-- Freetown Image on front of page 5 -->
+        </div>
+        <div class="back-page"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="editorial">
+  <div class="ed-head">
+    <h2>Continue Reading</h2>
+  </div>
+  <div class="ed-grid">
+    <div class="ed-card">
+      <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=800&q=80" alt="" class="ed-img">
+      <h3 style="font-family:'Playfair Display',serif;font-size:24px;margin-bottom:10px">Beyond the Horizon</h3>
+      <p style="font-size:14px;color:#666">The exclusive lodges redefining safari luxury.</p>
+    </div>
+    <div class="ed-card">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="" class="ed-img">
+      <h3 style="font-family:'Playfair Display',serif;font-size:24px;margin-bottom:10px">A Table in Marrakech</h3>
+      <p style="font-size:14px;color:#666">Where ancient spice routes meet modern fine dining.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- CURRENT ISSUE & EDITOR NOTE -->
+<section class="structural-section" style="background: var(--dg); border-top: 1px solid rgba(255,255,255,0.1);">
+  <div class="structural-grid">
+    <div>
+      <h2 class="sec-title">Current Issue Showcase</h2>
+      <p style="font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--go); margin-bottom: 10px;">Issue 1112 (June-August)</p>
+      <p class="sec-text">A Guide to Visual Consistency and Credibility. Our newest issue dives deep into the visual language of the continent, exploring how consistency in design and storytelling builds unshakeable credibility.</p>
+      <a href="#" class="cta">Get The Issue <span class="cta-arrow">→</span></a>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80" alt="Current Issue" style="width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+    </div>
+  </div>
+</section>
+
+<!-- EDITOR'S NOTE -->
+<section class="structural-section" style="background: var(--cr);">
+  <div class="structural-grid" style="grid-template-columns: 1fr 2fr;">
+    <div>
+      <h2 class="sec-title" style="color: #fff;">Editor's Note</h2>
+    </div>
+    <div>
+      <p class="sec-text" style="color: var(--cm);">"In a busy world, we owe it to ourselves to seek moments of peace and quiet. Not only does it exude space and solitude, but its natural rhythm slows you down and reconnects you with the restorative power of nature. Welcome to our Media Kit Draft 01 journey."</p>
+      <p style="font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px;">— Editor in Chief</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE ARCHIVE -->
+<section class="structural-section" style="background: var(--bg);">
+  <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+    <h2 class="sec-title">The Archive</h2>
+    <p class="sec-text">A wealth of information in our archive. Explore all available past issues here.</p>
+  </div>
+  <div class="archive-grid">
+    <div class="archive-item">
+      <img src="https://images.unsplash.com/photo-1509059852496-f3822ae057bf?w=400&q=80" class="archive-img">
+      <h3 style="font-family: 'Oswald', sans-serif;">Issue 1111</h3>
+      <p style="font-size: 12px; color: #888;">March</p>
+    </div>
+    <div class="archive-item">
+      <img src="https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=400&q=80" class="archive-img">
+      <h3 style="font-family: 'Oswald', sans-serif;">Issue 1110</h3>
+      <p style="font-size: 12px; color: #888;">November</p>
+    </div>
+    <div class="archive-item">
+      <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=400&q=80" class="archive-img">
+      <h3 style="font-family: 'Oswald', sans-serif;">Issue 109</h3>
+      <p style="font-size: 12px; color: #888;">August</p>
+    </div>
+    <div class="archive-item">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" class="archive-img">
+      <h3 style="font-family: 'Oswald', sans-serif;">Issue 108</h3>
+      <p style="font-size: 12px; color: #888;">May</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="structural-section" style="background: url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1600&q=80') center/cover; position: relative;">
+  <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.8);"></div>
+  <div style="position: relative; z-index: 2;">
+    <div class="newsletter-box">
+      <h2 class="sec-title" style="color: #fff;">Join The Newsletter</h2>
+      <p class="sec-text" style="font-size: 14px;">Sign up to receive additional content, news and travel tips by email. Your address will be used only for this purpose.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Your Email Address">
+        <button type="button">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="ft-logo">AFRICA TRAVEL & LIFE</div>
+  <p style="font-size:10px;color:#444;letter-spacing:2px;text-transform:uppercase">© 2025 All Rights Reserved.</p>
+</footer>
+
+<script>
+// Wait for DOM
+document.addEventListener("DOMContentLoaded", (event) => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 1. Initial Load Animation
+  const tl = gsap.timeline();
+  tl.to(".logo-block", {opacity: 1, y: 0, duration: 1, ease: "power3.out"})
+    .to(".nav-links li", {opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out"}, "-=0.5")
+    .to(".h-text", {y: "0%", duration: 1.2, stagger: 0.2, ease: "power4.out"}, "-=0.8")
+    .to(".h-sub", {opacity: 1, y: 0, duration: 1, ease: "power3.out"}, "-=0.5")
+    .to(".scroll-down", {opacity: 1, duration: 1}, "-=0.5");
+
+  // 2. 3D Magazine Animation via ScrollTrigger
+  const bookTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".magazine-section",
+      start: "top top",
+      end: "+=3000", // pin for 3000px of scrolling
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1
+    }
+  });
+
+  // Move book to center/left so we can read the spread
+  bookTimeline.to(".book", { x: "25%", rotateX: 0, duration: 1 })
+    // Flip Page 1 (Cover) open
+    .to(".page1", { rotationY: -180, duration: 2 }, "<")
+    // Pause on spread 1
+    .to({}, {duration: 1})
+    // Flip Page 2 & 3
+    .to(".page2", { rotationY: -180, duration: 2 })
+    .to(".page3", { rotationY: -180, duration: 2 }, "<")
+    // Pause on spread 2
+    .to({}, {duration: 1})
+    // Move book back slightly before unpinning
+    .to(".book", { x: "0%", rotateX: 10, duration: 1 });
+
+  // 3. Fade up editorial cards
+  gsap.utils.toArray('.ed-card').forEach(card => {
+    gsap.to(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 85%"
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+  });
+});
+</script>
+</body>
+</html>
