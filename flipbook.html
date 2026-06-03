@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Africa Travel - 3D Magazine Preview</title>
+    
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/flipbook.css">
+</head>
+<body>
+    
+    <!-- Background Elements for Aesthetics -->
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>Africa Travel & Life</h1>
+            <p>Magazine Interactive Preview</p>
+        </header>
+
+        <!-- Flipbook Container -->
+        <div class="flipbook-wrapper">
+            <!-- Navigation Previous -->
+            <button class="nav-btn prev-btn" id="btn-prev" aria-label="Previous Page">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            
+            <div class="book-container">
+                <!-- StPageFlip requires a specific DOM structure. We use the 'flipbook' ID to initialize. -->
+                <div id="flipbook">
+                    <!-- Pages will be injected dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- Navigation Next -->
+            <button class="nav-btn next-btn" id="btn-next" aria-label="Next Page">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+        </div>
+
+        <!-- Footer / Page Counter -->
+        <footer class="app-footer">
+            <div class="page-counter">
+                Page <span id="page-current">1</span> of <span id="page-total">-</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- StPageFlip JS Library (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+    
+    <!-- Custom Setup Script -->
+    <script src="js/flipbook_setup.js"></script>
+</body>
+</html>
